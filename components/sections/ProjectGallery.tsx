@@ -21,10 +21,10 @@ export default function ProjectGallery() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={springTransition}
           viewport={{ once: true }}
-          className="mb-16"
+          className="mb-16 text-center"
         >
-          <h2 className="text-4xl font-bold mb-3 tracking-tight">Projects</h2>
-          <p className="text-zinc-600 text-sm max-w-2xl leading-relaxed">
+          <h2 className="text-5xl md:text-6xl font-bold mb-3 tracking-tight">Featured Projects</h2>
+          <p className="text-zinc-600 text-sm max-w-2xl leading-relaxed mx-auto">
             Mini detail builder — Info about each project with tech stack and context.
           </p>
         </motion.div>

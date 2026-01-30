@@ -21,9 +21,9 @@ export default function LogoMarquee({
   const duplicatedLogos = [...logos, ...logos];
 
   return (
-    <div className="relative w-full overflow-hidden py-4">
+    <div className="relative w-full overflow-hidden py-2">
       <motion.div
-        className="flex gap-8 items-center"
+        className="flex gap-4 items-center"
         animate={{
           x: direction === "left" ? ["0%", "-50%"] : ["-50%", "0%"],
         }}
@@ -40,13 +40,13 @@ export default function LogoMarquee({
         {duplicatedLogos.map((logo, index) => (
           <div
             key={`${logo.name}-${index}`}
-            className="flex-shrink-0 w-12 h-12 relative"
+            className="flex-shrink-0 w-10 h-10 relative"
           >
             <Image
               src={logo.iconUrl}
               alt={logo.alt}
-              width={48}
-              height={48}
+              width={40}
+              height={40}
               className="object-contain"
             />
           </div>
