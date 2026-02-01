@@ -13,7 +13,7 @@ export default function ProjectGallery() {
   };
 
   return (
-    <section id="projects" className="min-h-[66vh] bg-white text-black px-6 py-20">
+    <section id="projects" className="min-h-[66vh] bg-white text-black px-6 py-[clamp(3rem,10vh,5rem)]">
       <div className="max-w-7xl mx-auto">
         {/* Section Title */}
         <motion.div 
@@ -23,14 +23,14 @@ export default function ProjectGallery() {
           viewport={{ once: true }}
           className="mb-16 text-center"
         >
-          <h2 className="text-5xl md:text-6xl font-bold mb-3 tracking-tight">Featured Projects</h2>
-          <p className="text-zinc-600 text-sm max-w-2xl leading-relaxed mx-auto">
+          <h2 className="text-[clamp(3rem,6vw,3.75rem)] font-bold mb-3 tracking-tight">Featured Projects</h2>
+          <p className="text-zinc-600 text-[clamp(0.8rem,1.5vw,0.875rem)] max-w-2xl leading-relaxed mx-auto">
             Mini detail builder — Info about each project with tech stack and context.
           </p>
         </motion.div>
 
         {/* Project Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 max-w-5xl mx-auto">
+        <div className="grid grid-cols-[repeat(auto-fit,minmax(min(320px,100%),1fr))] gap-8 max-w-5xl mx-auto">
           {projects.map((project, index) => (
             <motion.div
               key={project.id}
@@ -41,6 +41,7 @@ export default function ProjectGallery() {
                 delay: index * 0.1 
               }}
               viewport={{ once: true }}
+              className="@container"
             >
               <FlipCard
                 title={project.title}

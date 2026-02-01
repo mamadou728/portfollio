@@ -27,7 +27,7 @@ export default function AreaOfFocus() {
   ];
 
   return (
-    <section id="focus" className="text-black py-16" style={{ backgroundColor: '#D3D3D3' }}>
+    <section id="focus" className="text-black py-[clamp(2.5rem,8vh,4rem)]" style={{ backgroundColor: '#D3D3D3' }}>
       {/* Section Title - Outside logo wall area */}
       <div className="max-w-7xl mx-auto px-6 mb-8">
         <motion.div 
@@ -37,7 +37,7 @@ export default function AreaOfFocus() {
           viewport={{ once: true }}
           className="text-center"
         >
-          <h2 className="text-4xl md:text-5xl font-bold tracking-tight">Area of Focus</h2>
+          <h2 className="text-[clamp(2.25rem,5vw,3rem)] font-bold tracking-tight">Area of Focus</h2>
         </motion.div>
       </div>
 
@@ -61,7 +61,7 @@ export default function AreaOfFocus() {
         <div className="max-w-7xl mx-auto px-6 relative z-20 py-6">
 
           {/* Cards Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          <div className="grid grid-cols-[repeat(auto-fit,minmax(min(280px,100%),1fr))] gap-8 max-w-6xl mx-auto">
           {/* Backend Development Card */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}

@@ -31,7 +31,7 @@ export default function FlipCard({
 
   return (
     <div
-      className="relative w-full h-64 cursor-pointer group"
+      className="relative w-full h-64 @md:h-72 @lg:h-80 cursor-pointer group"
       onMouseEnter={() => setIsFlipped(true)}
       onMouseLeave={() => setIsFlipped(false)}
       onClick={() => setIsFlipped(!isFlipped)}
@@ -65,8 +65,8 @@ export default function FlipCard({
 
           {/* Dark Overlay with Centered Title */}
           <div className="absolute inset-0 bg-black/60 backdrop-blur-[2px] flex items-center justify-center">
-            <div className="text-center px-8">
-              <h3 className="text-2xl font-bold text-white tracking-tight leading-tight">
+            <div className="text-center px-6 @sm:px-8 @md:px-10">
+              <h3 className="text-xl @md:text-2xl @lg:text-3xl font-bold text-white tracking-tight leading-tight">
                 {title}
               </h3>
               <div className="w-12 h-0.5 bg-white/30 mx-auto mt-3"></div>
@@ -76,24 +76,24 @@ export default function FlipCard({
 
         {/* Back of Card */}
         <div
-          className="absolute inset-0 bg-gradient-to-br from-zinc-900 to-black text-white p-5 flex flex-col justify-between rounded-2xl border border-white/10 shadow-xl"
+          className="absolute inset-0 bg-gradient-to-br from-zinc-900 to-black text-white p-4 @sm:p-5 @md:p-6 flex flex-col justify-between rounded-2xl border border-white/10 shadow-xl"
           style={{
             backfaceVisibility: "hidden",
             transform: "rotateY(180deg)",
           }}
         >
           <div className="space-y-2">
-            <h3 className="text-lg font-bold tracking-tight">{title}</h3>
-            <p className="text-[11px] text-white/70 leading-relaxed">
+            <h3 className="text-base @sm:text-lg @md:text-xl font-bold tracking-tight">{title}</h3>
+            <p className="text-xs @sm:text-sm @md:text-sm text-white/70 leading-relaxed">
               {description}
             </p>
 
             {/* Tech Stack */}
-            <div className="flex flex-wrap gap-1.5 pt-1">
+            <div className="flex flex-wrap gap-1.5 @md:gap-2 pt-1">
               {techStack.map((tech) => (
                 <span
                   key={tech}
-                  className="px-2 py-0.5 bg-white/10 backdrop-blur-sm text-[10px] text-white/90 rounded-lg border border-white/10"
+                  className="px-2 py-0.5 bg-white/10 backdrop-blur-sm text-[10px] @sm:text-xs text-white/90 rounded-lg border border-white/10"
                 >
                   {tech}
                 </span>
@@ -107,7 +107,7 @@ export default function FlipCard({
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
               transition={springTransition}
-              className="w-full py-2 bg-white text-black hover:bg-zinc-100 transition-colors text-xs font-semibold rounded-xl"
+              className="w-full py-2 @md:py-2.5 bg-white text-black hover:bg-zinc-100 transition-colors text-xs @sm:text-sm font-semibold rounded-xl"
             >
               Read Story
             </motion.button>
