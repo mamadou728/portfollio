@@ -1,16 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { 
-  Workflow, 
-  ScrollText, 
-  BrainCircuit, 
-  Cpu, 
-  Database, 
-  Globe, 
-  Server,
-  Code2
-} from "lucide-react";
+import { ScrollText, Cpu } from "lucide-react";
 
 // Helper to get logo URL from devicons
 const getLogo = (name: string) => {
@@ -76,19 +67,22 @@ const orbitLevels = [
   },
 ];
 
+// Design rules: default spring { type: "spring", stiffness: 300, damping: 30 }
+const springTransition = { type: "spring" as const, stiffness: 300, damping: 30 };
+
 export default function TheOrbit() {
   return (
-    <section id="orbit" className="pt-[clamp(1rem,3vh,1.5rem)] pb-[clamp(1.5rem,4.5vh,2.75rem)] bg-white overflow-hidden">
+    <section id="orbit" className="pt-6 pb-8 bg-white overflow-hidden">
       <div className="max-w-7xl mx-auto px-6">
-        {/* Section Title — scaled down again */}
-        <div className="text-center mb-7">
-          <h2 className="text-[clamp(1.4rem,2.8vw,1.7rem)] font-bold mb-2">The Orbit</h2>
-          <p className="text-black/60 text-[10px]">
+        {/* Section Title — design: typography hierarchy, breathable whitespace */}
+        <div className="text-center mb-8">
+          <h2 className="text-xl font-bold tracking-tight mb-2">The Orbit</h2>
+          <p className="text-zinc-500 text-sm">
             My learning philosophy: spiraling outward from core to exploration.
           </p>
         </div>
 
-        <div className="flex flex-col lg:flex-row items-center gap-7 lg:gap-12">
+        <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-12">
           {/* Visual Orbit (Left) */}
           <div className="flex-1 flex justify-center items-center relative w-full">
             <div className="relative w-[254px] h-[254px] flex items-center justify-center">
@@ -98,14 +92,14 @@ export default function TheOrbit() {
                   key={level.level}
                   initial={{ scale: 0, opacity: 0 }}
                   whileInView={{ scale: 1, opacity: 1 }}
-                  transition={{ delay: lvlIndex * 0.2, duration: 0.8, type: "spring", bounce: 0.3 }}
+                  transition={{ ...springTransition, delay: lvlIndex * 0.2 }}
                   viewport={{ once: true }}
                   className={`absolute rounded-full bg-gradient-to-br ${level.color} border border-white/20 backdrop-blur-sm`}
                   style={{
                     width: `${level.sizePercent}%`,
                     height: `${level.sizePercent}%`,
                     zIndex: level.zIndex,
-                    boxShadow: "0 12px 28px rgba(0,0,0,0.1), inset 0 1px 6px rgba(255,255,255,0.25)",
+                    boxShadow: "0 4px 20px rgba(0,0,0,0.06), inset 0 1px 0 rgba(255,255,255,0.2)",
                   }}
                 />
               ))}
@@ -125,9 +119,9 @@ export default function TheOrbit() {
                 return (
                   <motion.div
                     key={`orbit-${level.level}`}
-                    initial={{ opacity: 0, rotate: 0 }}
+                    initial={{ opacity: 0 }}
                     whileInView={{ opacity: 1 }}
-                    transition={{ delay: 0.3 + lvlIndex * 0.1 }}
+                    transition={{ ...springTransition, delay: 0.3 + lvlIndex * 0.1 }}
                     viewport={{ once: true }}
                     className="absolute"
                     style={{
@@ -150,12 +144,7 @@ export default function TheOrbit() {
                           key={`${level.level}-${itemIndex}`}
                           initial={{ opacity: 0, scale: 0.3 }}
                           whileInView={{ opacity: 1, scale: 1 }}
-                          transition={{
-                            type: "spring",
-                            stiffness: 180,
-                            damping: 20,
-                            delay: 0.5 + lvlIndex * 0.15 + itemIndex * 0.08,
-                          }}
+                          transition={{ ...springTransition, delay: 0.5 + lvlIndex * 0.15 + itemIndex * 0.08 }}
                           viewport={{ once: true }}
                           className="absolute flex flex-col items-center justify-center"
                           style={{ 
@@ -167,7 +156,7 @@ export default function TheOrbit() {
                           }}
                         >
                           {item.type === "logo" ? (
-                            <div className="w-6 h-6 md:w-7 md:h-7 bg-white rounded-full p-1 shadow-lg flex items-center justify-center hover:scale-110 transition-transform cursor-pointer" title={item.name}>
+                            <div className="w-6 h-6 md:w-7 md:h-7 bg-white/95 backdrop-blur-sm rounded-full p-1 flex items-center justify-center hover:scale-110 transition-transform cursor-pointer shadow-sm" title={item.name} role="img" aria-label={item.name}>
                               <img 
                                 src={getLogo(item.name || "")} 
                                 alt={item.name}
@@ -176,7 +165,7 @@ export default function TheOrbit() {
                             </div>
                           ) : (
                             <div className="flex flex-col items-center group">
-                              <div className="w-5 h-5 md:w-6 md:h-6 bg-white/95 rounded-full p-0.5 shadow-md flex items-center justify-center text-black hover:scale-110 transition-transform cursor-pointer">
+                              <div className="w-5 h-5 md:w-6 md:h-6 bg-white/95 backdrop-blur-sm rounded-full p-0.5 shadow-sm flex items-center justify-center text-black hover:scale-110 transition-transform cursor-pointer" role="img" aria-label={item.label}>
                                 {item.icon && <item.icon className="w-full h-full" />}
                               </div>
                               <span className="text-[8px] font-bold text-white mt-0.5 bg-black/30 px-1 py-0.5 rounded-full backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
@@ -193,21 +182,21 @@ export default function TheOrbit() {
             </div>
           </div>
 
-          {/* Text Content (Right) — scaled down again */}
-          <div className="flex-1 space-y-4">
+          {/* Text Content (Right) — design: typography hierarchy, muted secondary text */}
+          <div className="flex-1 space-y-6">
             {orbitLevels.map((level, index) => (
               <motion.div
                 key={level.level}
                 initial={{ opacity: 0, x: 12 }}
                 whileInView={{ opacity: 1, x: 0 }}
-                transition={{ delay: index * 0.2 + 0.3 }}
+                transition={{ ...springTransition, delay: index * 0.2 + 0.3 }}
                 viewport={{ once: true }}
-                className="flex gap-2"
+                className="flex gap-3"
               >
                 <div className={`w-0.5 h-auto rounded-full bg-gradient-to-b ${level.color}`} />
                 <div>
-                  <h3 className="text-sm font-bold mb-0.5">{level.level}</h3>
-                  <p className="text-[10px] text-black/60 leading-relaxed">
+                  <h3 className="text-base font-semibold tracking-tight mb-1">{level.level}</h3>
+                  <p className="text-sm text-zinc-500 leading-relaxed">
                     {level.description}
                   </p>
                 </div>

@@ -108,7 +108,7 @@ export default function FlipCard({
               transition={{ type: "spring", stiffness: 300, damping: 30 }}
               className="w-full py-1.5 @md:py-2 bg-white text-black hover:bg-zinc-100 transition-colors text-[10px] @sm:text-xs font-semibold rounded-lg"
             >
-              Read Story
+              Read More
             </motion.button>
           </Link>
         </div>

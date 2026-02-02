@@ -4,13 +4,17 @@ import React from "react";
 import { motion } from "framer-motion";
 import { Lightbulb, Award, GraduationCap, Trophy, BrainCircuit, Users } from "lucide-react";
 
+// Design Rules: Spring physics for motion choreography
+const springTransition = { type: "spring" as const, stiffness: 300, damping: 30 };
+
+// Microcopy: clear, concise text; Content-First. Display (titles) vs UI (labels, mono dates).
 const timelineData = [
   {
     id: 1,
     year: "Fall 2020",
     title: "The Spark",
     subtitle: "High School",
-    description: "Learned Java & Python in high school. Built mini-projects to understand programming fundamentals.",
+    description: "Java & Python basics. Mini-projects to learn programming fundamentals.",
     category: "personal",
     icon: <Lightbulb className="w-4 h-4 text-yellow-500" />,
   },
@@ -19,16 +23,16 @@ const timelineData = [
     year: "May 2021",
     title: "Exploration",
     subtitle: "Certifications",
-    description: "Earned NumPy certification & completed Blockchain introduction course.",
+    description: "NumPy certification and Blockchain introduction course.",
     category: "certification",
     icon: <Award className="w-4 h-4 text-blue-500" />,
   },
   {
     id: 3,
-    year: "2021 - 2025",
+    year: "2021 – 2025",
     title: "The Foundation",
     subtitle: "Carleton University",
-    description: "Studied Computer Science. Mastered Algorithms, Data Structures & System Architecture.",
+    description: "Computer Science degree. Algorithms, data structures, system architecture.",
     category: "education",
     icon: <GraduationCap className="w-4 h-4 text-purple-500" />,
   },
@@ -37,7 +41,7 @@ const timelineData = [
     year: "May 2025",
     title: "Innovation",
     subtitle: "Building Phase",
-    description: "Started working on WealthNudge and AI Orchestrator application for public users.",
+    description: "WealthNudge and AI Orchestrator for public users.",
     category: "project",
     icon: <BrainCircuit className="w-4 h-4 text-cyan-500" />,
   },
@@ -46,7 +50,7 @@ const timelineData = [
     year: "Sept 2025",
     title: "Validation",
     subtitle: "Hackathon Winner",
-    description: "Won my first Hackathon. Proved I could deliver under pressure.",
+    description: "First hackathon win. Delivered under pressure.",
     category: "achievement",
     icon: <Trophy className="w-4 h-4 text-amber-500" />,
   },
@@ -55,7 +59,7 @@ const timelineData = [
     year: "Nov 2025",
     title: "Building",
     subtitle: "YesResume & Lexi-RAG",
-    description: "Started building YesResume. While developing it, began brainstorming Lexi-RAG concepts.",
+    description: "YesResume development; early Lexi-RAG concept work.",
     category: "project",
     icon: <BrainCircuit className="w-4 h-4 text-indigo-500" />,
   },
@@ -64,7 +68,7 @@ const timelineData = [
     year: "Jan 2026",
     title: "Beta & Launch",
     subtitle: "Current Phase",
-    description: "First beta user for YesResume. Started building Lexi-RAG privacy-first system.",
+    description: "YesResume first beta user. Lexi-RAG privacy-first system in progress.",
     category: "project",
     icon: <Users className="w-4 h-4 text-emerald-500" />,
   },
@@ -74,8 +78,9 @@ export default function JourneyPath() {
   return (
     <section id="timeline" className="text-black pt-4 pb-[clamp(2rem,5vh,3rem)]" style={{ backgroundColor: '#F5F5F5' }}>
       <div className="max-w-7xl mx-auto px-6 pt-4 pb-8">
+        {/* Section Title – Typography hierarchy (Display); breathable whitespace */}
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold text-gray-900">My Journey</h2>
+          <h2 className="text-[clamp(1.3rem,3.4vw,1.875rem)] font-bold tracking-tight text-gray-900">My Journey</h2>
         </div>
 
         {/* --- DESKTOP VIEW (Zigzag) --- */}
@@ -100,7 +105,7 @@ export default function JourneyPath() {
                     <motion.div
                       initial={{ opacity: 0, y: isEven ? -20 : 20 }}
                       whileInView={{ opacity: 1, y: 0 }}
-                      transition={{ delay: index * 0.1 }}
+                      transition={{ ...springTransition, delay: index * 0.1 }}
                       viewport={{ once: true }}
                       className={`absolute w-48 text-center p-2 transition-all duration-300 hover:scale-105 group cursor-default
                         ${isEven ? "bottom-1/2 mb-8" : "top-1/2 mt-8"}
@@ -111,12 +116,13 @@ export default function JourneyPath() {
                         ${isEven ? "-bottom-8" : "-top-8"}
                       `} />
 
-                      <h3 className="text-base font-bold text-gray-900 group-hover:text-blue-500 transition-colors">
+                      {/* Display type: heading; UI type: mono year, muted secondary */}
+                      <h3 className="text-base font-bold tracking-tight text-gray-900 group-hover:text-blue-500 transition-colors">
                         {item.title}
                       </h3>
                       <div className="text-blue-500 font-mono text-[10px] font-bold mb-1 uppercase tracking-wide">{item.year}</div>
                       <p className="text-xs font-medium text-gray-600 mb-1">{item.subtitle}</p>
-                      <p className="text-[11px] text-gray-500 leading-tight">
+                      <p className="text-[11px] text-zinc-500 leading-tight">
                         {item.description}
                       </p>
                     </motion.div>
@@ -145,7 +151,7 @@ export default function JourneyPath() {
               key={item.id}
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
-              transition={{ delay: index * 0.1 }}
+              transition={{ ...springTransition, delay: index * 0.1 }}
               viewport={{ once: true }}
               className="relative pl-6"
             >
@@ -153,9 +159,9 @@ export default function JourneyPath() {
               
               <div className="flex flex-col">
                 <span className="text-xs font-mono text-blue-500 font-bold mb-1">{item.year}</span>
-                <h3 className="text-lg font-bold text-gray-900">{item.title}</h3>
+                <h3 className="text-lg font-bold tracking-tight text-gray-900">{item.title}</h3>
                 <p className="text-sm text-gray-600 mb-2">{item.subtitle}</p>
-                <p className="text-sm text-gray-500 leading-relaxed">{item.description}</p>
+                <p className="text-sm text-zinc-500 leading-relaxed">{item.description}</p>
               </div>
             </motion.div>
           ))}
