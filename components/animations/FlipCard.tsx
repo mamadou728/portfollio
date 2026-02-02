@@ -22,16 +22,15 @@ export default function FlipCard({
 }: FlipCardProps) {
   const [isFlipped, setIsFlipped] = useState(false);
 
-  // Design Rules: Spring physics
-  const springTransition = {
-    type: "spring",
-    stiffness: 300,
-    damping: 30,
+  const flipTransition = {
+    type: "tween",
+    duration: 1.2,
+    ease: "easeInOut",
   };
 
   return (
     <div
-      className="relative w-full h-64 @md:h-72 @lg:h-80 cursor-pointer group"
+      className="relative w-full h-32 @md:h-36 @lg:h-40 cursor-pointer group"
       onMouseEnter={() => setIsFlipped(true)}
       onMouseLeave={() => setIsFlipped(false)}
       onClick={() => setIsFlipped(!isFlipped)}
@@ -39,12 +38,12 @@ export default function FlipCard({
       <motion.div
         className="w-full h-full"
         animate={{ rotateY: isFlipped ? 180 : 0 }}
-        transition={springTransition}
+        transition={flipTransition}
         style={{ transformStyle: "preserve-3d" }}
       >
         {/* Front of Card */}
         <div
-          className="absolute inset-0 overflow-hidden rounded-2xl border border-white/10 shadow-2xl"
+          className="absolute inset-0 overflow-hidden rounded-xl border border-white/10 shadow-xl"
           style={{ backfaceVisibility: "hidden" }}
         >
           {/* Project Image Background */}
@@ -65,35 +64,35 @@ export default function FlipCard({
 
           {/* Dark Overlay with Centered Title */}
           <div className="absolute inset-0 bg-black/60 backdrop-blur-[2px] flex items-center justify-center">
-            <div className="text-center px-6 @sm:px-8 @md:px-10">
-              <h3 className="text-xl @md:text-2xl @lg:text-3xl font-bold text-white tracking-tight leading-tight">
+            <div className="text-center px-3 @sm:px-4 @md:px-5">
+              <h3 className="text-sm @md:text-base @lg:text-lg font-bold text-white tracking-tight leading-tight">
                 {title}
               </h3>
-              <div className="w-12 h-0.5 bg-white/30 mx-auto mt-3"></div>
+              <div className="w-6 h-0.5 bg-white/30 mx-auto mt-1.5"></div>
             </div>
           </div>
         </div>
 
         {/* Back of Card */}
         <div
-          className="absolute inset-0 bg-gradient-to-br from-zinc-900 to-black text-white p-4 @sm:p-5 @md:p-6 flex flex-col justify-between rounded-2xl border border-white/10 shadow-xl"
+          className="absolute inset-0 bg-gradient-to-br from-zinc-900 to-black text-white p-2 @sm:p-2.5 @md:p-3 flex flex-col justify-between rounded-xl border border-white/10 shadow-xl"
           style={{
             backfaceVisibility: "hidden",
             transform: "rotateY(180deg)",
           }}
         >
-          <div className="space-y-2">
-            <h3 className="text-base @sm:text-lg @md:text-xl font-bold tracking-tight">{title}</h3>
-            <p className="text-xs @sm:text-sm @md:text-sm text-white/70 leading-relaxed">
+          <div className="space-y-1">
+            <h3 className="text-xs @sm:text-sm @md:text-base font-bold tracking-tight">{title}</h3>
+            <p className="text-[10px] @sm:text-xs text-white/70 leading-snug line-clamp-2">
               {description}
             </p>
 
             {/* Tech Stack */}
-            <div className="flex flex-wrap gap-1.5 @md:gap-2 pt-1">
+            <div className="flex flex-wrap gap-1 pt-0.5">
               {techStack.map((tech) => (
                 <span
                   key={tech}
-                  className="px-2 py-0.5 bg-white/10 backdrop-blur-sm text-[10px] @sm:text-xs text-white/90 rounded-lg border border-white/10"
+                  className="px-1.5 py-0.5 bg-white/10 backdrop-blur-sm text-[8px] @sm:text-[10px] text-white/90 rounded border border-white/10"
                 >
                   {tech}
                 </span>
@@ -106,8 +105,8 @@ export default function FlipCard({
             <motion.button 
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
-              transition={springTransition}
-              className="w-full py-2 @md:py-2.5 bg-white text-black hover:bg-zinc-100 transition-colors text-xs @sm:text-sm font-semibold rounded-xl"
+              transition={{ type: "spring", stiffness: 300, damping: 30 }}
+              className="w-full py-1.5 @md:py-2 bg-white text-black hover:bg-zinc-100 transition-colors text-[10px] @sm:text-xs font-semibold rounded-lg"
             >
               Read Story
             </motion.button>

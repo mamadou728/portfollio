@@ -10,6 +10,24 @@ export interface Project {
 export const projects: Project[] = [
   {
     id: "1",
+    title: "AI Orchestration",
+    image: "/images/projects/ai-orchestration.jpg",
+    description:
+      "Orchestrating AI workflows and pipelines for scalable automation.",
+    techStack: ["Python", "LangChain", "OpenAI"],
+    slug: "ai-orchestration",
+  },
+  {
+    id: "2",
+    title: "Wealthnudge",
+    image: "/images/projects/wealthnudge.jpg",
+    description:
+      "Personal finance and wealth-building nudges and insights.",
+    techStack: ["Next.js", "TypeScript", "Fintech APIs"],
+    slug: "wealthnudge",
+  },
+  {
+    id: "3",
     title: "YesResume",
     image: "/images/projects/yesresume.jpg",
     description:
@@ -18,7 +36,7 @@ export const projects: Project[] = [
     slug: "yes-resume",
   },
   {
-    id: "2",
+    id: "4",
     title: "Lexi-RAG",
     image: "/images/projects/lexi-rag.jpg",
     description:
@@ -26,5 +44,4 @@ export const projects: Project[] = [
     techStack: ["Python", "LangChain", "Vector DB"],
     slug: "lexi-rag",
   },
-  // Add more projects here
 ];

@@ -1,130 +1,164 @@
 "use client";
 
+import React from "react";
 import { motion } from "framer-motion";
-import { timeline } from "@/data/timeline";
-import { cn } from "@/lib/utils";
-import { FileText, Award } from "lucide-react";
+import { Lightbulb, Award, GraduationCap, Trophy, BrainCircuit, Users } from "lucide-react";
+
+const timelineData = [
+  {
+    id: 1,
+    year: "Fall 2020",
+    title: "The Spark",
+    subtitle: "High School",
+    description: "Learned Java & Python in high school. Built mini-projects to understand programming fundamentals.",
+    category: "personal",
+    icon: <Lightbulb className="w-4 h-4 text-yellow-500" />,
+  },
+  {
+    id: 2,
+    year: "May 2021",
+    title: "Exploration",
+    subtitle: "Certifications",
+    description: "Earned NumPy certification & completed Blockchain introduction course.",
+    category: "certification",
+    icon: <Award className="w-4 h-4 text-blue-500" />,
+  },
+  {
+    id: 3,
+    year: "2021 - 2025",
+    title: "The Foundation",
+    subtitle: "Carleton University",
+    description: "Studied Computer Science. Mastered Algorithms, Data Structures & System Architecture.",
+    category: "education",
+    icon: <GraduationCap className="w-4 h-4 text-purple-500" />,
+  },
+  {
+    id: 4,
+    year: "May 2025",
+    title: "Innovation",
+    subtitle: "Building Phase",
+    description: "Started working on WealthNudge and AI Orchestrator application for public users.",
+    category: "project",
+    icon: <BrainCircuit className="w-4 h-4 text-cyan-500" />,
+  },
+  {
+    id: 5,
+    year: "Sept 2025",
+    title: "Validation",
+    subtitle: "Hackathon Winner",
+    description: "Won my first Hackathon. Proved I could deliver under pressure.",
+    category: "achievement",
+    icon: <Trophy className="w-4 h-4 text-amber-500" />,
+  },
+  {
+    id: 6,
+    year: "Nov 2025",
+    title: "Building",
+    subtitle: "YesResume & Lexi-RAG",
+    description: "Started building YesResume. While developing it, began brainstorming Lexi-RAG concepts.",
+    category: "project",
+    icon: <BrainCircuit className="w-4 h-4 text-indigo-500" />,
+  },
+  {
+    id: 7,
+    year: "Jan 2026",
+    title: "Beta & Launch",
+    subtitle: "Current Phase",
+    description: "First beta user for YesResume. Started building Lexi-RAG privacy-first system.",
+    category: "project",
+    icon: <Users className="w-4 h-4 text-emerald-500" />,
+  },
+];
 
 export default function JourneyPath() {
   return (
-    <section id="timeline" className="text-black py-[clamp(2rem,6vh,3rem)] overflow-hidden" style={{ backgroundColor: '#F5F5F5' }}>
-      <div className="max-w-7xl mx-auto px-6">
-        {/* Section Title */}
-        <div className="mb-6 text-center -mt-1">
-          <h2 className="text-[clamp(2rem,4.5vw,2.5rem)] font-bold mb-2 tracking-tight">My Journey</h2>
-          <p className="text-black/60 text-[clamp(0.8rem,1.5vw,0.875rem)]">
-            A non-linear story of learning, building, and evolving.
-          </p>
+    <section id="timeline" className="text-black pt-4 pb-[clamp(2rem,5vh,3rem)]" style={{ backgroundColor: '#F5F5F5' }}>
+      <div className="max-w-7xl mx-auto px-6 pt-4 pb-8">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl font-bold text-gray-900">My Journey</h2>
         </div>
 
-        {/* Dual Wave Visualization */}
-        <div className="relative w-full h-[320px] mb-12">
-          {/* Waves */}
-          <div className="absolute inset-0 flex items-center">
-            <svg className="w-full h-full" preserveAspectRatio="none" viewBox="0 0 1000 200">
-              {/* Blue Wave (Projects) */}
-              <motion.path
-                d="M0 100 Q 250 0, 500 100 T 1000 100"
-                fill="none"
-                stroke="#2563EB" // blue-600
-                strokeWidth="3"
-                className="opacity-100"
-                initial={{ pathLength: 0 }}
-                whileInView={{ pathLength: 1 }}
-                transition={{ duration: 1.5, ease: "easeInOut" }}
-              />
-              {/* Orange Wave (Certifications) */}
-              <motion.path
-                d="M0 100 Q 250 200, 500 100 T 1000 100"
-                fill="none"
-                stroke="#F97316" // orange-500
-                strokeWidth="3"
-                className="opacity-100"
-                initial={{ pathLength: 0 }}
-                whileInView={{ pathLength: 1 }}
-                transition={{ duration: 1.5, ease: "easeInOut", delay: 0.2 }}
-              />
-            </svg>
-          </div>
+        {/* --- DESKTOP VIEW (Zigzag) --- */}
+        <div className="hidden md:block relative">
+          <div className="overflow-x-auto pb-6 scrollbar-hide">
+            <div className="relative h-80 min-w-[1600px]">
+              
+              {/* The Central Line */}
+              <div className="absolute top-1/2 left-0 w-full h-0.5 bg-gray-300 -translate-y-1/2 rounded-full" />
 
-          {/* Timeline Items */}
-          <div className="absolute inset-0">
-            {timeline.map((item, index) => {
-              // Calculate position along the wave
-              const totalItems = timeline.length;
-              const progress = (index + 1) / (totalItems + 1);
-              const xPercent = progress * 100;
-              const xPos = progress * 1000;
-              
-              let yPos = 100;
-              
-              if (item.type === "project") {
-                 // Blue wave logic: M0 100 Q 250 0... (hump first)
-                 const phase = (xPos / 1000) * (Math.PI * 2); 
-                 yPos = 100 - (Math.sin(phase) * 50); // Approx matching Q curves
-              } else {
-                 // Orange wave logic: M0 100 Q 250 200... (trough first)
-                 const phase = (xPos / 1000) * (Math.PI * 2);
-                 yPos = 100 + (Math.sin(phase) * 50); // Approx matching Q curves
-              }
+              {/* The Grid */}
+              <div className="grid grid-cols-7 w-full h-full">
+              {timelineData.map((item, index) => {
+                const isEven = index % 2 === 0;
+                return (
+                  <div key={item.id} className="relative flex justify-center h-full">
+                    
+                    {/* The Dot */}
+                    <div className="absolute top-1/2 left-1/2 w-4 h-4 bg-gray-100 rounded-full border-[3px] border-blue-500 -translate-x-1/2 -translate-y-1/2 z-10 shadow-md" />
 
-              const isTop = yPos < 100;
-              
-              return (
-                <motion.div
-                  key={index}
-                  className="absolute"
-                  style={{ left: `${xPercent}%`, top: `${(yPos / 200) * 100}%` }}
-                  initial={{ opacity: 0, scale: 0 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: index * 0.2 }}
-                >
-                  {/* Node */}
-                  <div className={cn(
-                    "w-12 h-12 rounded-full flex items-center justify-center text-xs font-bold text-white z-10 relative -translate-x-1/2 -translate-y-1/2 shadow-md hover:scale-110 transition-transform duration-300",
-                    item.type === "project" ? "bg-blue-600" : "bg-orange-500"
-                  )}>
-                    {item.year}
+                    {/* The Content Card */}
+                    <motion.div
+                      initial={{ opacity: 0, y: isEven ? -20 : 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      transition={{ delay: index * 0.1 }}
+                      viewport={{ once: true }}
+                      className={`absolute w-48 text-center p-2 transition-all duration-300 hover:scale-105 group cursor-default
+                        ${isEven ? "bottom-1/2 mb-8" : "top-1/2 mt-8"}
+                      `}
+                    >
+                      {/* Connector Line */}
+                      <div className={`absolute left-1/2 w-px h-8 bg-gray-300 -translate-x-1/2
+                        ${isEven ? "-bottom-8" : "-top-8"}
+                      `} />
+
+                      <h3 className="text-base font-bold text-gray-900 group-hover:text-blue-500 transition-colors">
+                        {item.title}
+                      </h3>
+                      <div className="text-blue-500 font-mono text-[10px] font-bold mb-1 uppercase tracking-wide">{item.year}</div>
+                      <p className="text-xs font-medium text-gray-600 mb-1">{item.subtitle}</p>
+                      <p className="text-[11px] text-gray-500 leading-tight">
+                        {item.description}
+                      </p>
+                    </motion.div>
                   </div>
-
-                  {/* Connector Line */}
-                  <div 
-                    className={cn(
-                      "absolute w-0.5 border-l-2 border-dashed border-gray-300 h-16 left-0 -translate-x-1/2 z-0",
-                       isTop ? "top-0" : "bottom-0"
-                    )}
-                  />
-
-                  {/* Card */}
-                  <div className={cn(
-                    "absolute w-48 bg-white p-4 rounded-xl shadow-lg border border-gray-100 z-20 hover:shadow-xl transition-shadow duration-300",
-                    isTop ? "top-16" : "bottom-16",
-                    "-translate-x-1/2"
-                  )}>
-                    <div className="flex items-center gap-2 mb-2">
-                       {item.type === "project" ? (
-                         <FileText className="w-4 h-4 text-blue-600" />
-                       ) : (
-                         <Award className="w-4 h-4 text-orange-500" />
-                       )}
-                       <span className="text-xs font-bold uppercase tracking-wider text-gray-400">{item.type}</span>
-                    </div>
-                    <h3 className="font-bold text-sm mb-1">{item.title}</h3>
-                    <p className="text-xs text-gray-500 leading-relaxed">{item.description}</p>
-                  </div>
-                </motion.div>
-              );
-            })}
+                );
+              })}
+              </div>
+            </div>
           </div>
         </div>
 
-        {/* Additional Context */}
-        <div className="max-w-3xl mx-auto text-center mt-20">
-          <p className="text-black/70 text-[clamp(0.8rem,1.5vw,0.875rem)] leading-relaxed">
-            My path has never been linear. Each turn represents a moment of curiosity,
-            a challenge overcome, or a skill mastered. From ancient technology to
-            modern AI systems, I believe in learning by doing.
-          </p>
+        <style jsx>{`
+          .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+          }
+          .scrollbar-hide {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+          }
+        `}</style>
+
+        {/* --- MOBILE VIEW (Vertical Fallback) --- */}
+        <div className="md:hidden space-y-8 pl-4 border-l-2 border-gray-300 ml-4">
+          {timelineData.map((item, index) => (
+            <motion.div
+              key={item.id}
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ delay: index * 0.1 }}
+              viewport={{ once: true }}
+              className="relative pl-6"
+            >
+              <div className="absolute -left-[21px] top-1.5 w-3 h-3 bg-blue-500 rounded-full border-2 border-gray-100" />
+              
+              <div className="flex flex-col">
+                <span className="text-xs font-mono text-blue-500 font-bold mb-1">{item.year}</span>
+                <h3 className="text-lg font-bold text-gray-900">{item.title}</h3>
+                <p className="text-sm text-gray-600 mb-2">{item.subtitle}</p>
+                <p className="text-sm text-gray-500 leading-relaxed">{item.description}</p>
+              </div>
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>

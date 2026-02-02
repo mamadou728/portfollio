@@ -13,24 +13,21 @@ export default function ProjectGallery() {
   };
 
   return (
-    <section id="projects" className="min-h-[66vh] bg-white text-black px-6 py-[clamp(3rem,10vh,5rem)]">
-      <div className="max-w-7xl mx-auto">
+    <section id="projects" className="min-h-0 bg-white text-black px-6 pt-[clamp(0.75rem,2vh,1.5rem)] pb-[clamp(2rem,5vh,3rem)]">
+      <div className="max-w-4xl mx-auto">
         {/* Section Title */}
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={springTransition}
           viewport={{ once: true }}
-          className="mb-16 text-center"
+          className="mb-8 text-center"
         >
-          <h2 className="text-[clamp(3rem,6vw,3.75rem)] font-bold mb-3 tracking-tight">Featured Projects</h2>
-          <p className="text-zinc-600 text-[clamp(0.8rem,1.5vw,0.875rem)] max-w-2xl leading-relaxed mx-auto">
-            Mini detail builder — Info about each project with tech stack and context.
-          </p>
+          <h2 className="text-[clamp(1.75rem,4.5vw,2.5rem)] font-bold tracking-tight">Featured Projects</h2>
         </motion.div>
 
         {/* Project Grid */}
-        <div className="grid grid-cols-[repeat(auto-fit,minmax(min(320px,100%),1fr))] gap-8 max-w-5xl mx-auto">
+        <div className="grid grid-cols-[repeat(auto-fit,minmax(min(280px,100%),1fr))] gap-6 max-w-3xl mx-auto">
           {projects.map((project, index) => (
             <motion.div
               key={project.id}

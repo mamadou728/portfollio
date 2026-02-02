@@ -21,9 +21,9 @@ export default function LogoMarquee({
   const duplicatedLogos = [...logos, ...logos];
 
   return (
-    <div className="relative w-full overflow-hidden py-2">
+    <div className="relative w-full overflow-hidden py-2 min-h-[3.5rem] flex items-center">
       <motion.div
-        className="flex gap-4 items-center"
+        className="flex gap-4 items-center flex-shrink-0"
         animate={{
           x: direction === "left" ? ["0%", "-50%"] : ["-50%", "0%"],
         }}
