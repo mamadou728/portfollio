@@ -23,8 +23,8 @@ export default function ProjectImageGallery({ images, title }: ProjectImageGalle
 
   const closeLightbox = useCallback(() => setLightboxOpen(false), []);
 
-  const goPrev = () => setSelectedIndex((i) => (i <= 0 ? images.length - 1 : i - 1));
-  const goNext = () => setSelectedIndex((i) => (i >= images.length - 1 ? 0 : i + 1));
+  const goPrev = useCallback(() => setSelectedIndex((i) => (i <= 0 ? images.length - 1 : i - 1)), [images.length]);
+  const goNext = useCallback(() => setSelectedIndex((i) => (i >= images.length - 1 ? 0 : i + 1)), [images.length]);
 
   useEffect(() => {
     const handleKey = (e: KeyboardEvent) => {
@@ -35,7 +35,7 @@ export default function ProjectImageGallery({ images, title }: ProjectImageGalle
     };
     window.addEventListener("keydown", handleKey);
     return () => window.removeEventListener("keydown", handleKey);
-  }, [lightboxOpen, closeLightbox]);
+  }, [lightboxOpen, closeLightbox, goPrev, goNext]);
 
   if (!images?.length) return null;
 

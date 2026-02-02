@@ -51,7 +51,7 @@ export default function Hero() {
             transition={{ ...springTransition, delay: 0.2 }}
             className="text-[clamp(1rem,2.67vw,1.5rem)] font-bold leading-tight text-black tracking-tight"
           >
-            Hi, I'm Mamadou <span className="inline-block hover:animate-wave origin-[70%_70%]">👋</span>
+            Hi, I&apos;m Mamadou <span className="inline-block hover:animate-wave origin-[70%_70%]">👋</span>
           </motion.h1>
 
           {/* Sub-Headline */}

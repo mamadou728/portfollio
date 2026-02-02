@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { ScrollText, Cpu } from "lucide-react";
 
@@ -155,11 +156,13 @@ export default function TheOrbit() {
                             animation: `spin ${duration}s linear infinite reverse`,
                           }}
                         >
-                          {item.type === "logo" ? (
+                            {item.type === "logo" ? (
                             <div className="w-6 h-6 md:w-7 md:h-7 bg-white/95 backdrop-blur-sm rounded-full p-1 flex items-center justify-center hover:scale-110 transition-transform cursor-pointer shadow-sm" title={item.name} role="img" aria-label={item.name}>
-                              <img 
-                                src={getLogo(item.name || "")} 
-                                alt={item.name}
+                              <Image
+                                src={getLogo(item.name || "")}
+                                alt={item.name ?? ""}
+                                width={28}
+                                height={28}
                                 className="w-full h-full object-contain"
                               />
                             </div>

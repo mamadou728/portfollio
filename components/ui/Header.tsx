@@ -37,18 +37,23 @@ export default function Header() {
           onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
           className="px-2 py-1 text-sm md:text-base font-bold text-white hover:text-zinc-300 transition-colors rounded-full"
         >
-          MK.
+          MK
         </button>
 
-        {/* Navigation Links */}
+        {/* Navigation Links – match section order: Future Projects → Area of Focus → My Journey → Orbit → Contact */}
         <div className="flex items-center pr-1 gap-0.5">
-          {["Work", "Journey", "Orbit"].map((item) => (
+          {[
+            { label: "Future Projects", id: "projects" },
+            { label: "Area of Focus", id: "focus" },
+            { label: "My Journey", id: "timeline" },
+            { label: "Orbit", id: "orbit" },
+          ].map(({ label, id }) => (
             <button
-              key={item}
-              onClick={() => scrollToSection(item === "Work" ? "projects" : item === "Journey" ? "timeline" : "skills")}
+              key={id}
+              onClick={() => scrollToSection(id)}
               className="px-1.5 md:px-2 py-1 text-[10px] md:text-xs font-medium text-white/70 hover:text-white hover:bg-white/10 rounded-full transition-all hidden sm:block"
             >
-              {item}
+              {label}
             </button>
           ))}
 
