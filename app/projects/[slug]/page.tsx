@@ -80,9 +80,24 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
             {/* Left: Story, Description, Technicality */}
             <article className="lg:col-span-7 space-y-10">
               {/* Title — typography hierarchy */}
-              <h1 className="text-3xl md:text-4xl font-bold tracking-tight text-black">
-                {project.title}
-              </h1>
+              <div>
+                <h1 className="text-3xl md:text-4xl font-bold tracking-tight text-black mb-4">
+                  {project.title}
+                </h1>
+                {project.liveUrl && (
+                  <a
+                    href={project.liveUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 px-4 py-2 bg-black text-white text-sm font-medium rounded-lg hover:bg-zinc-800 transition-colors"
+                  >
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                    </svg>
+                    View Live Project
+                  </a>
+                )}
+              </div>
 
               {/* 1. Story */}
               {project.story && (

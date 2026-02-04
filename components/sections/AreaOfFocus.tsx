@@ -70,7 +70,7 @@ export default function AreaOfFocus() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ ...springTransition, delay: 0.1 }}
             viewport={{ once: true }}
-            className="bg-white/90 backdrop-blur-sm rounded-xl p-4 shadow-lg hover:shadow-xl transition-shadow min-h-[410px]"
+            className="bg-white/95 rounded-xl p-4 shadow-lg hover:shadow-xl transition-shadow min-h-[410px]"
           >
             <h3 className="text-xl font-bold mb-4 tracking-tight">Backend Development</h3>
             
@@ -85,21 +85,33 @@ export default function AreaOfFocus() {
               </li>
               <li className="flex items-start gap-1">
                 <span className="text-xs mt-0.5">•</span>
-                <span className="text-xs">Microservices and cloud infrastructure</span>
+                <span className="text-xs">Event-driven architecture for live notifications and instant chat</span>
               </li>
               <li className="flex items-start gap-1">
                 <span className="text-xs mt-0.5">•</span>
-                <span className="text-xs">Authentication and security protocols</span>
+                <span className="text-xs">Secure handling of sensitive data with privacy-first design</span>
+              </li>
+              <li className="flex items-start gap-1">
+                <span className="text-xs mt-0.5">•</span>
+                <span className="text-xs">Containerized deployment and cloud infrastructure</span>
               </li>
             </ul>
 
             <div className="w-full h-px bg-gray-300 mb-3"></div>
 
             <div className="flex flex-wrap gap-1">
-              <span className="px-1.5 py-0.5 bg-gray-200 rounded-full text-[10px] font-medium">Node.js</span>
+              <span className="px-1.5 py-0.5 bg-gray-200 rounded-full text-[10px] font-medium">Java</span>
               <span className="px-1.5 py-0.5 bg-gray-200 rounded-full text-[10px] font-medium">Python</span>
+              <span className="px-1.5 py-0.5 bg-gray-200 rounded-full text-[10px] font-medium">C</span>
+              <span className="px-1.5 py-0.5 bg-gray-200 rounded-full text-[10px] font-medium">C++</span>
+              <span className="px-1.5 py-0.5 bg-gray-200 rounded-full text-[10px] font-medium">Dart</span>
+              <span className="px-1.5 py-0.5 bg-gray-200 rounded-full text-[10px] font-medium">Node.js</span>
               <span className="px-1.5 py-0.5 bg-gray-200 rounded-full text-[10px] font-medium">PostgreSQL</span>
+              <span className="px-1.5 py-0.5 bg-gray-200 rounded-full text-[10px] font-medium">MongoDB</span>
+              <span className="px-1.5 py-0.5 bg-gray-200 rounded-full text-[10px] font-medium">JWT</span>
+              <span className="px-1.5 py-0.5 bg-gray-200 rounded-full text-[10px] font-medium">FastAPI</span>
               <span className="px-1.5 py-0.5 bg-gray-200 rounded-full text-[10px] font-medium">Docker</span>
+              <span className="px-1.5 py-0.5 bg-gray-200 rounded-full text-[10px] font-medium">WebSocket</span>
             </div>
           </motion.div>
 
@@ -109,22 +121,26 @@ export default function AreaOfFocus() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ ...springTransition, delay: 0.2 }}
             viewport={{ once: true }}
-            className="bg-white/90 backdrop-blur-sm rounded-xl p-4 shadow-lg hover:shadow-xl transition-shadow min-h-[410px]"
+            className="bg-white/95 rounded-xl p-4 shadow-lg hover:shadow-xl transition-shadow min-h-[410px]"
           >
             <h3 className="text-xl font-bold mb-4 tracking-tight">Frontend Development</h3>
             
             <ul className="space-y-2 mb-4">
               <li className="flex items-start gap-1">
                 <span className="text-xs mt-0.5">•</span>
-                <span className="text-xs">Modern responsive web applications</span>
+                <span className="text-xs">Building consistent experiences across mobile and web platforms</span>
               </li>
               <li className="flex items-start gap-1">
                 <span className="text-xs mt-0.5">•</span>
-                <span className="text-xs">Component-based architecture</span>
+                <span className="text-xs">Designing chat interfaces with streaming responses for natural AI interaction</span>
               </li>
               <li className="flex items-start gap-1">
                 <span className="text-xs mt-0.5">•</span>
-                <span className="text-xs">State management and data flow</span>
+                <span className="text-xs">State management with modern hooks and patterns</span>
+              </li>
+              <li className="flex items-start gap-1">
+                <span className="text-xs mt-0.5">•</span>
+                <span className="text-xs">Component-based architecture with reusable design patterns</span>
               </li>
               <li className="flex items-start gap-1">
                 <span className="text-xs mt-0.5">•</span>
@@ -136,8 +152,11 @@ export default function AreaOfFocus() {
 
             <div className="flex flex-wrap gap-1">
               <span className="px-1.5 py-0.5 bg-gray-200 rounded-full text-[10px] font-medium">React</span>
+              <span className="px-1.5 py-0.5 bg-gray-200 rounded-full text-[10px] font-medium">React Native</span>
               <span className="px-1.5 py-0.5 bg-gray-200 rounded-full text-[10px] font-medium">Next.js</span>
               <span className="px-1.5 py-0.5 bg-gray-200 rounded-full text-[10px] font-medium">TypeScript</span>
+              <span className="px-1.5 py-0.5 bg-gray-200 rounded-full text-[10px] font-medium">HTML</span>
+              <span className="px-1.5 py-0.5 bg-gray-200 rounded-full text-[10px] font-medium">CSS</span>
               <span className="px-1.5 py-0.5 bg-gray-200 rounded-full text-[10px] font-medium">Tailwind</span>
             </div>
           </motion.div>
@@ -148,26 +167,34 @@ export default function AreaOfFocus() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ ...springTransition, delay: 0.3 }}
             viewport={{ once: true }}
-            className="bg-white/90 backdrop-blur-sm rounded-xl p-4 shadow-lg hover:shadow-xl transition-shadow min-h-[410px]"
+            className="bg-white/95 rounded-xl p-4 shadow-lg hover:shadow-xl transition-shadow min-h-[410px]"
           >
             <h3 className="text-xl font-bold mb-4 tracking-tight">AI & Machine Learning</h3>
             
             <ul className="space-y-2 mb-4">
               <li className="flex items-start gap-1">
                 <span className="text-xs mt-0.5">•</span>
-                <span className="text-xs">Machine learning model development</span>
+                <span className="text-xs">Building autonomous agents that can plan, execute tools, and reason</span>
               </li>
               <li className="flex items-start gap-1">
                 <span className="text-xs mt-0.5">•</span>
-                <span className="text-xs">Natural language processing</span>
+                <span className="text-xs">Implementing vector databases for semantic memory and context retrieval</span>
               </li>
               <li className="flex items-start gap-1">
                 <span className="text-xs mt-0.5">•</span>
-                <span className="text-xs">Computer vision and image recognition</span>
+                <span className="text-xs">Designing local-first or private pipelines for sensitive document analysis</span>
               </li>
               <li className="flex items-start gap-1">
                 <span className="text-xs mt-0.5">•</span>
-                <span className="text-xs">Data analysis and predictive modeling</span>
+                <span className="text-xs">Natural language interfaces with voice and intent classification</span>
+              </li>
+              <li className="flex items-start gap-1">
+                <span className="text-xs mt-0.5">•</span>
+                <span className="text-xs">Prompt engineering and context optimization</span>
+              </li>
+              <li className="flex items-start gap-1">
+                <span className="text-xs mt-0.5">•</span>
+                <span className="text-xs">Classification and linear regression models</span>
               </li>
             </ul>
 
@@ -175,9 +202,15 @@ export default function AreaOfFocus() {
 
             <div className="flex flex-wrap gap-1">
               <span className="px-1.5 py-0.5 bg-gray-200 rounded-full text-[10px] font-medium">Python</span>
-              <span className="px-1.5 py-0.5 bg-gray-200 rounded-full text-[10px] font-medium">TensorFlow</span>
-              <span className="px-1.5 py-0.5 bg-gray-200 rounded-full text-[10px] font-medium">PyTorch</span>
-              <span className="px-1.5 py-0.5 bg-gray-200 rounded-full text-[10px] font-medium">Scikit-learn</span>
+              <span className="px-1.5 py-0.5 bg-gray-200 rounded-full text-[10px] font-medium">OpenAI API</span>
+              <span className="px-1.5 py-0.5 bg-gray-200 rounded-full text-[10px] font-medium">LangChain</span>
+              <span className="px-1.5 py-0.5 bg-gray-200 rounded-full text-[10px] font-medium">LangGraph</span>
+              <span className="px-1.5 py-0.5 bg-gray-200 rounded-full text-[10px] font-medium">RAG</span>
+              <span className="px-1.5 py-0.5 bg-gray-200 rounded-full text-[10px] font-medium">Qdrant</span>
+              <span className="px-1.5 py-0.5 bg-gray-200 rounded-full text-[10px] font-medium">HuggingFace</span>
+              <span className="px-1.5 py-0.5 bg-gray-200 rounded-full text-[10px] font-medium">Ollama</span>
+              <span className="px-1.5 py-0.5 bg-gray-200 rounded-full text-[10px] font-medium">NLP</span>
+              <span className="px-1.5 py-0.5 bg-gray-200 rounded-full text-[10px] font-medium">MCP</span>
             </div>
           </motion.div>
           </div>

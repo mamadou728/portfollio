@@ -16,6 +16,8 @@ export interface Project {
     tools?: string[];
     other?: string[];
   };
+  /** Live project URL */
+  liveUrl?: string;
 }
 
 export const projects: Project[] = [
@@ -57,20 +59,24 @@ export const projects: Project[] = [
   {
     id: "3",
     title: "YesResume",
-    image: "/images/projects/yesresume.jpg",
+    image: "/images/projects/Yesresume/image.png",
     description:
       "A resume intelligence system that matches candidates to jobs using Vector DBs.",
     techStack: ["Next.js", "Python", "Qdrant"],
     slug: "yes-resume",
     story:
       "YesResume was born from the frustration of applying to jobs that never fit. I wanted to flip the script: match resumes to the right roles using embeddings and semantic search.",
-    gallery: ["/images/projects/yesresume.jpg"],
+    gallery: [
+      "/images/projects/Yesresume/image.png",
+      "/images/projects/Yesresume/Screenshot 2026-02-03 224057.png",
+    ],
     technicalDetails: {
       languages: ["Python", "TypeScript"],
       frameworks: ["Next.js", "FastAPI"],
       tools: ["Qdrant", "PostgreSQL", "Docker"],
       other: ["Vector embeddings", "RAG"],
     },
+    liveUrl: "https://yesresume-front-coops.vercel.app/",
   },
   {
     id: "4",

@@ -73,11 +73,10 @@ export default function Hero() {
             transition={{ ...springTransition, delay: 0.4 }}
             className="text-[clamp(0.8rem,1.5vw,0.875rem)] text-zinc-600 leading-relaxed max-w-lg"
           >
-            I am a Computer Science student at Carleton University, but I
-            define myself by what I ship. Whether it is engineering
-            privacy-first AI systems like Lexi-RAG or studying ancient Roman
-            technology, I am obsessed with understanding how complex things
-            work—and how to build them better.
+            
+I’m a Computer Science student who learns by building. 
+From privacy-first AI experiments like Lexi-RAG to YesResume, an AI-powered app now in beta, 
+I explore and create at the intersection of AI, software, and system design to build useful tools. 
           </motion.p>
 
           {/* Social Links */}

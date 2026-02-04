@@ -30,7 +30,7 @@ export default function FlipCard({
 
   return (
     <div
-      className="relative w-full h-32 @md:h-36 @lg:h-40 cursor-pointer group"
+      className="relative w-full h-48 @md:h-56 @lg:h-64 cursor-pointer group"
       onMouseEnter={() => setIsFlipped(true)}
       onMouseLeave={() => setIsFlipped(false)}
       onClick={() => setIsFlipped(!isFlipped)}
@@ -53,7 +53,7 @@ export default function FlipCard({
                 src={image}
                 alt={title}
                 fill
-                className="object-cover"
+                className="object-cover object-left-top"
               />
             ) : (
               <div className="w-full h-full flex items-center justify-center text-white/20">
@@ -63,12 +63,12 @@ export default function FlipCard({
           </div>
 
           {/* Dark Overlay with Centered Title */}
-          <div className="absolute inset-0 bg-black/60 backdrop-blur-[2px] flex items-center justify-center">
+          <div className="absolute inset-0 bg-black/30 flex items-center justify-center transition-colors duration-300 group-hover:bg-black/40">
             <div className="text-center px-3 @sm:px-4 @md:px-5">
-              <h3 className="text-sm @md:text-base @lg:text-lg font-bold text-white tracking-tight leading-tight">
+              <h3 className="text-sm @md:text-base @lg:text-lg font-bold text-white tracking-tight leading-tight drop-shadow-md">
                 {title}
               </h3>
-              <div className="w-6 h-0.5 bg-white/30 mx-auto mt-1.5"></div>
+              <div className="w-6 h-0.5 bg-white/60 mx-auto mt-1.5 shadow-sm"></div>
             </div>
           </div>
         </div>
