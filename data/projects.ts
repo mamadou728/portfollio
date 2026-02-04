@@ -23,41 +23,6 @@ export interface Project {
 export const projects: Project[] = [
   {
     id: "1",
-    title: "AI Orchestration",
-    image: "/images/projects/ai-orchestration.jpg",
-    description:
-      "Orchestrating AI workflows and pipelines for scalable automation.",
-    techStack: ["Python", "LangChain", "OpenAI"],
-    slug: "ai-orchestration",
-    story:
-      "This project started from a need to connect multiple AI services and data sources into reliable, repeatable workflows without writing one-off scripts every time.",
-    gallery: ["/images/projects/ai-orchestration.jpg"],
-    technicalDetails: {
-      languages: ["Python"],
-      frameworks: ["LangChain", "FastAPI"],
-      tools: ["OpenAI API", "Vector DB", "Docker"],
-      other: ["MCP", "Async pipelines"],
-    },
-  },
-  {
-    id: "2",
-    title: "Wealthnudge",
-    image: "/images/projects/wealthnudge.jpg",
-    description:
-      "Personal finance and wealth-building nudges and insights.",
-    techStack: ["Next.js", "TypeScript", "Fintech APIs"],
-    slug: "wealthnudge",
-    story:
-      "Built to help people make small, consistent financial decisions with gentle nudges and clear insights instead of overwhelming dashboards.",
-    gallery: ["/images/projects/wealthnudge.jpg"],
-    technicalDetails: {
-      languages: ["TypeScript", "SQL"],
-      frameworks: ["Next.js", "React Native", "Express"],
-      tools: ["PostgreSQL", "Fintech APIs", "Docker"],
-    },
-  },
-  {
-    id: "3",
     title: "YesResume",
     image: "/images/projects/Yesresume/image.png",
     description:
@@ -79,7 +44,7 @@ export const projects: Project[] = [
     liveUrl: "https://yesresume-front-coops.vercel.app/",
   },
   {
-    id: "4",
+    id: "2",
     title: "Lexi-RAG",
     image: "/images/projects/lexi-rag.jpg",
     description:
@@ -94,6 +59,41 @@ export const projects: Project[] = [
       frameworks: ["LangChain", "FastAPI"],
       tools: ["Vector DB", "Local embeddings", "Docker"],
       other: ["Privacy-first", "Document chunking"],
+    },
+  },
+  {
+    id: "3",
+    title: "Wealthnudge",
+    image: "/images/projects/wealthnudge.jpg",
+    description:
+      "Personal finance and wealth-building nudges and insights.",
+    techStack: ["Next.js", "TypeScript", "Fintech APIs"],
+    slug: "wealthnudge",
+    story:
+      "Built to help people make small, consistent financial decisions with gentle nudges and clear insights instead of overwhelming dashboards.",
+    gallery: ["/images/projects/wealthnudge.jpg"],
+    technicalDetails: {
+      languages: ["TypeScript", "SQL"],
+      frameworks: ["Next.js", "React Native", "Express"],
+      tools: ["PostgreSQL", "Fintech APIs", "Docker"],
+    },
+  },
+  {
+    id: "4",
+    title: "SafeSpace",
+    image: "/images/projects/safespace.jpg",
+    description:
+      "A secure platform for mental health support and community connection.",
+    techStack: ["React", "Node.js", "PostgreSQL"],
+    slug: "safespace",
+    story:
+      "SafeSpace provides a safe, anonymous environment for individuals to seek mental health support and connect with others.",
+    gallery: ["/images/projects/safespace.jpg"],
+    technicalDetails: {
+      languages: ["JavaScript", "TypeScript"],
+      frameworks: ["React", "Express"],
+      tools: ["PostgreSQL", "JWT", "Docker"],
+      other: ["End-to-end encryption", "Anonymous profiles"],
     },
   },
 ];

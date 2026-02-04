@@ -45,7 +45,7 @@ export default function Header() {
       className="fixed top-[clamp(0.375rem,1vw,0.75rem)] left-0 right-0 z-[100] px-[clamp(0.5rem,2.5vw,4rem)]"
       style={{ backgroundColor: "transparent" }}
     >
-      <nav className="flex items-center justify-between gap-2 lg:gap-3 px-3 sm:px-[clamp(0.5rem,1.5vw,1rem)] py-2.5 sm:py-[clamp(0.25rem,0.75vw,0.375rem)] rounded-lg bg-black/80 backdrop-blur-md border border-white/10 shadow-xl shadow-black/10 w-full max-w-[50%] sm:max-w-[50%] mx-auto min-h-[44px] sm:min-h-0">
+      <nav className="flex items-center justify-between gap-2 lg:gap-3 px-3 sm:px-[clamp(0.5rem,1.5vw,1rem)] py-2.5 sm:py-[clamp(0.25rem,0.75vw,0.375rem)] rounded-lg bg-black/80 backdrop-blur-md border border-white/10 shadow-xl shadow-black/10 w-full max-w-[90%] sm:max-w-[50%] mx-auto min-h-[44px] sm:min-h-0">
         {/* Brand */}
         <button
           onClick={() => {
@@ -77,8 +77,8 @@ export default function Header() {
           </a>
         </div>
 
-        {/* Mobile: menu button + Contact */}
-        <div className="flex items-center gap-1 sm:hidden">
+        {/* Mobile: menu button only */}
+        <div className="flex items-center sm:hidden">
           <button
             type="button"
             onClick={() => setMenuOpen(true)}
@@ -87,12 +87,6 @@ export default function Header() {
           >
             <Menu className="w-5 h-5" />
           </button>
-          <a
-            href="#contact"
-            className="px-3 py-2 text-sm font-medium bg-white text-black rounded-full hover:bg-zinc-200 transition-colors min-h-[44px] flex items-center"
-          >
-            Contact
-          </a>
         </div>
       </nav>
 

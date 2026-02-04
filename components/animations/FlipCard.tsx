@@ -48,17 +48,13 @@ export default function FlipCard({
         >
           {/* Project Image Background */}
           <div className="w-full h-full relative bg-gradient-to-br from-zinc-700 to-zinc-900">
-            {image ? (
+            {image && (
               <Image
                 src={image}
                 alt={title}
                 fill
                 className="object-cover object-left-top"
               />
-            ) : (
-              <div className="w-full h-full flex items-center justify-center text-white/20">
-                <span className="text-xs font-medium">No Image</span>
-              </div>
             )}
           </div>
 
