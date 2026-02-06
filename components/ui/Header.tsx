@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 
 const navItems = [
-  { label: "Future Projects", id: "projects" },
+  { label: "Projects", id: "projects" },
   { label: "Area of Focus", id: "focus" },
   { label: "My Journey", id: "timeline" },
   { label: "Orbit", id: "orbit" },
