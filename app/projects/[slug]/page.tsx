@@ -4,6 +4,7 @@ import { projects } from "@/data/projects";
 import Header from "@/components/ui/Header";
 import PageWrapper from "@/components/ui/PageWrapper";
 import ProjectImageGallery from "@/components/ui/ProjectImageGallery";
+import { ArrowUpRight } from "lucide-react";
 
 interface ProjectPageProps {
   params: Promise<{ slug: string }>;
@@ -15,9 +16,29 @@ export async function generateStaticParams() {
 
 function SectionHeading({ children }: { children: React.ReactNode }) {
   return (
-    <h2 className="text-xl font-semibold tracking-tight text-black mb-3">
+    <h2 className="text-xl md:text-2xl font-bold tracking-tight text-black mb-4">
       {children}
     </h2>
+  );
+}
+
+function ContentSection({
+  title,
+  children,
+  className = "",
+}: {
+  title?: string;
+  children: React.ReactNode;
+  className?: string;
+}) {
+  if (!children) return null;
+  return (
+    <section className={`border-l-2 border-zinc-100 pl-5 md:pl-6 py-1 ${className}`}>
+      {title && <SectionHeading>{title}</SectionHeading>}
+      <div className="text-base text-zinc-600 leading-relaxed space-y-3">
+        {children}
+      </div>
+    </section>
   );
 }
 
@@ -31,14 +52,14 @@ function TechnicalGrid({
   if (!items?.length) return null;
   return (
     <div className="mb-6 last:mb-0">
-      <h3 className="text-sm font-medium text-zinc-500 uppercase tracking-wide mb-2">
+      <h3 className="text-[10px] font-semibold text-zinc-500 uppercase tracking-widest mb-2">
         {title}
       </h3>
-      <div className="flex flex-wrap gap-2">
+      <div className="flex flex-wrap gap-1.5">
         {items.map((item) => (
           <span
             key={item}
-            className="px-3 py-1.5 bg-zinc-100 text-zinc-700 text-sm font-medium rounded-lg border border-zinc-200/80"
+            className="px-2.5 py-1 bg-white text-zinc-700 text-xs font-medium rounded-md border border-zinc-200 shadow-sm"
           >
             {item}
           </span>
@@ -59,119 +80,115 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
   const galleryImages = project.gallery?.length
     ? project.gallery
     : project.image
-      ? [project.image]
-      : [];
+    ? [project.image]
+    : [];
 
   return (
-    <main className="min-h-screen bg-white text-black">
+    <main className="min-h-screen bg-white text-black selection:bg-zinc-900 selection:text-white">
       <PageWrapper>
         <Header />
-        <div className="max-w-7xl mx-auto px-6 py-8 md:py-12">
-          {/* Back link — design: muted text, clear affordance */}
-          <Link
-            href="/#projects"
-            className="inline-flex items-center gap-2 text-sm text-zinc-500 hover:text-black transition-colors mb-8"
-          >
-            ← Back to projects
-          </Link>
-
-          {/* Two-column layout: left content, right gallery */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
-            {/* Left: Story, Description, Technicality */}
-            <article className="lg:col-span-7 space-y-10">
-              {/* Title — typography hierarchy */}
-              <div>
-                <h1 className="text-3xl md:text-4xl font-bold tracking-tight text-black mb-4">
-                  {project.title}
-                </h1>
-                {project.liveUrl && (
-                  <a
-                    href={project.liveUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 px-4 py-2 bg-black text-white text-sm font-medium rounded-lg hover:bg-zinc-800 transition-colors"
-                  >
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                    </svg>
-                    View Live Project
-                  </a>
-                )}
-              </div>
-
-              {/* 1. Story */}
-              {project.story && (
-                <section>
-                  <SectionHeading>The story</SectionHeading>
-                  <p className="text-zinc-600 leading-relaxed">
-                    {project.story}
-                  </p>
-                </section>
-              )}
-
-              {/* 2. Description */}
-              <section>
-                <SectionHeading>About the project</SectionHeading>
-                <p className="text-zinc-600 leading-relaxed">
-                  {project.description}
-                </p>
-              </section>
-
-              {/* 3. Technicality */}
-              <section>
-                <SectionHeading>Technical details</SectionHeading>
-                <p className="text-sm text-zinc-500 mb-4">
-                  Languages, frameworks, and tools used in this project.
-                </p>
-                {project.technicalDetails &&
-                (project.technicalDetails.languages?.length ||
-                  project.technicalDetails.frameworks?.length ||
-                  project.technicalDetails.tools?.length ||
-                  project.technicalDetails.other?.length) ? (
-                  <div className="rounded-xl border border-zinc-200/80 bg-zinc-50/50 backdrop-blur-sm p-6">
-                    <TechnicalGrid
-                      title="Languages"
-                      items={project.technicalDetails.languages ?? []}
-                    />
-                    <TechnicalGrid
-                      title="Frameworks"
-                      items={project.technicalDetails.frameworks ?? []}
-                    />
-                    <TechnicalGrid
-                      title="Tools"
-                      items={project.technicalDetails.tools ?? []}
-                    />
-                    <TechnicalGrid
-                      title="Other"
-                      items={project.technicalDetails.other ?? []}
-                    />
-                  </div>
-                ) : (
-                  <div className="flex flex-wrap gap-2">
-                    {project.techStack.map((tech) => (
-                      <span
-                        key={tech}
-                        className="px-3 py-1.5 bg-zinc-100 text-zinc-700 text-sm font-medium rounded-lg border border-zinc-200/80"
-                      >
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
-                )}
-              </section>
-            </article>
-
-            {/* Right: Gallery — sticky on desktop */}
-            <aside className="lg:col-span-5">
-              <div className="lg:sticky lg:top-24">
-                <ProjectImageGallery
-                  images={galleryImages}
-                  title={project.title}
-                />
-              </div>
-            </aside>
+        
+        <article className="max-w-5xl mx-auto px-6 py-8 md:py-12">
+          
+          {/* 1. Images Section - Top */}
+          <div className="mt-8 md:mt-12 mb-10 md:mb-12 max-h-[400px] overflow-hidden">
+            <ProjectImageGallery
+              images={galleryImages}
+              title={project.title}
+            />
           </div>
-        </div>
+
+          {/* 2. Header: Title & Link */}
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-12 pb-6 border-b border-zinc-100">
+            <h1 className="text-3xl md:text-5xl font-black tracking-tighter text-black">
+              {project.title}
+            </h1>
+            
+            {project.liveUrl && (
+              <a
+                href={project.liveUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-5 py-2.5 bg-black text-white text-sm font-medium rounded-full hover:bg-zinc-800 transition-all hover:scale-105 active:scale-95 shadow-lg shadow-zinc-200"
+              >
+                View Live Project
+                <ArrowUpRight className="w-4 h-4" />
+              </a>
+            )}
+          </div>
+
+          {/* 3. Content Sections - Vertical Layout */}
+          <div className="max-w-3xl mx-auto space-y-12">
+            
+            {/* Headline / Description - "Standard content part with the headline" */}
+            <div className="text-lg md:text-xl font-medium text-zinc-900 leading-relaxed">
+              {project.description}
+            </div>
+
+            {/* Business Context */}
+            {project.businessContext && (
+              <ContentSection title="Business Context">
+                {project.businessContext}
+              </ContentSection>
+            )}
+
+            {/* Engineering Architecture */}
+            {project.architecture && (
+              <ContentSection title="Engineering Architecture">
+                {project.architecture}
+              </ContentSection>
+            )}
+
+            {/* Hard Decisions */}
+            {project.hardDecisions && (
+              <ContentSection title="Hard Decisions & Trade-offs">
+                {project.hardDecisions}
+              </ContentSection>
+            )}
+
+            {/* Tech Stack */}
+            <section className="border-l-2 border-zinc-100 pl-5 md:pl-6 py-1">
+              <SectionHeading>Tech Stack & Tools</SectionHeading>
+              
+              {project.technicalDetails &&
+              (project.technicalDetails.languages?.length ||
+                project.technicalDetails.frameworks?.length ||
+                project.technicalDetails.tools?.length ||
+                project.technicalDetails.other?.length) ? (
+                <div className="bg-zinc-50/50 rounded-2xl p-5 border border-zinc-100">
+                  <TechnicalGrid
+                    title="Languages"
+                    items={project.technicalDetails.languages ?? []}
+                  />
+                  <TechnicalGrid
+                    title="Frameworks"
+                    items={project.technicalDetails.frameworks ?? []}
+                  />
+                  <TechnicalGrid
+                    title="Tools"
+                    items={project.technicalDetails.tools ?? []}
+                  />
+                  <TechnicalGrid
+                    title="Other"
+                    items={project.technicalDetails.other ?? []}
+                  />
+                </div>
+              ) : (
+                <div className="flex flex-wrap gap-1.5">
+                  {project.techStack.map((tech) => (
+                    <span
+                      key={tech}
+                      className="px-3 py-1 bg-zinc-100 text-zinc-800 text-xs font-medium rounded-full"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+              )}
+            </section>
+
+          </div>
+        </article>
       </PageWrapper>
     </main>
   );

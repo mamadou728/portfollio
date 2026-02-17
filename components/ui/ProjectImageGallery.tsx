@@ -48,7 +48,7 @@ export default function ProjectImageGallery({ images, title }: ProjectImageGalle
         animate={{ opacity: 1, y: 0 }}
         transition={springTransition}
         onClick={() => openLightbox(selectedIndex)}
-        className="relative w-full aspect-[4/3] rounded-xl overflow-hidden bg-zinc-100 ring-1 ring-black/5 cursor-zoom-in focus:outline-none focus:ring-2 focus:ring-zinc-900 focus:ring-offset-2"
+        className="relative w-full aspect-video rounded-xl overflow-hidden bg-zinc-100 ring-1 ring-black/5 cursor-zoom-in focus:outline-none focus:ring-2 focus:ring-zinc-900 focus:ring-offset-2"
         aria-label="Expand image"
       >
         <Image
