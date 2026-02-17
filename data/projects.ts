@@ -107,4 +107,23 @@ export const projects: Project[] = [
       other: ["End-to-end encryption", "Anonymous profiles"],
     },
   },
+  {
+    id: "5",
+    title: "AI Finance Agent",
+    image: "/images/projects/ai-agent.jpg",
+    description:
+      "AI orchestration backend powering the WealthNudge ecosystem, routing financial requests across tools and analytics using a LangGraph state machine, secure Text-to-SQL validation, and dynamic MCP tool execution.",
+    businessContext: "This system extends WealthNudge by adding an intelligent AI layer that actively guides users through their financial decisions. Instead of only exposing dashboards and CRUD endpoints, the platform enables users to interact conversationally with their data.\n\nThe objective is to create a secure financial environment where users can:\n\n• Log and modify financial data through natural language\n• Query analytics without writing SQL\n• Receive structured guidance while preserving strict data isolation\n\nThe AI layer is designed to enhance usability without compromising safety, performance, or tenant separation.",
+    architecture: "Agent Orchestration (LangGraph): Implemented an event-driven state machine with specialized nodes and conditional routing across four intent categories (domain action, analytics read, general inquiry, other). A shared AgentState model preserves session context across multi-step flows.\n\nSecure Text-to-SQL Pipeline: Built a multi-stage validation system: Deterministic LLM SQL generation, Security validation enforcing SELECT-only queries and mandatory user filters, and Execution with automatic fallback to a safe query builder. This guarantees zero unsafe write operations while enabling flexible financial analytics.\n\nMCP Tool Execution Layer: Designed a dynamic tool registry supporting seven financial domains (wallets, transactions, budgets, bills, goals, income, debts), allowing the agent to trigger structured backend operations.\n\nCRUD Factory Pattern: Implemented a configurable factory that generates domain tools dynamically, significantly reducing duplication while maintaining strict schema validation and type safety.",
+    hardDecisions: "Flexibility vs. Security: Enabled natural language analytics while enforcing strict SQL validation and database-level Row-Level Security.\n\nScalability vs. Simplicity: Adopted a registry-based tool architecture to support multi-domain expansion at the cost of increased orchestration complexity.\n\nLatency vs. Correctness: Accepted additional validation and routing layers to ensure financial correctness and tenant isolation.",
+    techStack: ["Python", "FastAPI", "LangGraph", "Pydantic", "MCP", "OpenAI GPT-4o-mini", "PostgreSQL", "Supabase", "JWT"],
+    slug: "ai-finance-agent",
+    gallery: ["/images/projects/ai-agent.jpg"],
+    technicalDetails: {
+      languages: ["Python"],
+      frameworks: ["FastAPI", "LangGraph"],
+      tools: ["PostgreSQL", "Supabase", "Pydantic", "MCP"],
+      other: ["OpenAI GPT-4o-mini", "Text-to-SQL", "Row-Level Security", "Intent classification", "Rate limiting"],
+    },
+  },
 ];
