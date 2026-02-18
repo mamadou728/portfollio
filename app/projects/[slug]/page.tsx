@@ -90,32 +90,57 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
         
         <article className="max-w-5xl mx-auto px-6 py-8 md:py-12">
           
-          {/* 1. Images Section - Top */}
-          <div className="mt-8 md:mt-12 mb-10 md:mb-12 max-h-[400px] overflow-hidden">
-            <ProjectImageGallery
-              images={galleryImages}
-              title={project.title}
-            />
-          </div>
+          {galleryImages.length > 0 ? (
+            <>
+              {/* 1. Images Section - Top */}
+              <div className="mt-8 md:mt-12 mb-10 md:mb-12 max-h-[400px] overflow-hidden">
+                <ProjectImageGallery
+                  images={galleryImages}
+                  title={project.title}
+                />
+              </div>
 
-          {/* 2. Header: Title & Link */}
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-12 pb-6 border-b border-zinc-100">
-            <h1 className="text-3xl md:text-5xl font-black tracking-tighter text-black">
-              {project.title}
-            </h1>
-            
-            {project.liveUrl && (
-              <a
-                href={project.liveUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-5 py-2.5 bg-black text-white text-sm font-medium rounded-full hover:bg-zinc-800 transition-all hover:scale-105 active:scale-95 shadow-lg shadow-zinc-200"
-              >
-                View Live Project
-                <ArrowUpRight className="w-4 h-4" />
-              </a>
-            )}
-          </div>
+              {/* 2. Header: Title & Link */}
+              <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-12 pb-6 border-b border-zinc-100">
+                <h1 className="text-3xl md:text-5xl font-black tracking-tighter text-black">
+                  {project.title}
+                </h1>
+                
+                {project.liveUrl && (
+                  <a
+                    href={project.liveUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 px-5 py-2.5 bg-black text-white text-sm font-medium rounded-full hover:bg-zinc-800 transition-all hover:scale-105 active:scale-95 shadow-lg shadow-zinc-200"
+                  >
+                    View Live Project
+                    <ArrowUpRight className="w-4 h-4" />
+                  </a>
+                )}
+              </div>
+            </>
+          ) : (
+            <>
+              {/* Centered Title When No Images */}
+              <div className="mt-8 md:mt-12 mb-12 text-center">
+                <h1 className="text-4xl md:text-6xl font-black tracking-tighter text-black mb-6">
+                  {project.title}
+                </h1>
+                {project.liveUrl && (
+                  <a
+                    href={project.liveUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 px-5 py-2.5 bg-black text-white text-sm font-medium rounded-full hover:bg-zinc-800 transition-all hover:scale-105 active:scale-95 shadow-lg shadow-zinc-200"
+                  >
+                    View Live Project
+                    <ArrowUpRight className="w-4 h-4" />
+                  </a>
+                )}
+              </div>
+              <div className="border-b border-zinc-100 mb-12"></div>
+            </>
+          )}
 
           {/* 3. Content Sections - Vertical Layout */}
           <div className="max-w-3xl mx-auto space-y-12">
