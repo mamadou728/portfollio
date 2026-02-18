@@ -17,7 +17,7 @@ export default function Home() {
       <ProjectGallery />
       <AreaOfFocus />
       <JourneyPath />
-      <TheOrbit />
+      {/* <TheOrbit /> */}
       <Footer />
     </main>
   );

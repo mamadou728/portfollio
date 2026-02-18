@@ -12,6 +12,7 @@ const getLogo = (name: string) => {
     typescript: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg",
     javascript: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg",
     react: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg",
+    reactnative: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg",
     nextjs: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nextjs/nextjs-original.svg",
     nodejs: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-original.svg",
     docker: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/docker/docker-original.svg",
@@ -20,7 +21,8 @@ const getLogo = (name: string) => {
     mongodb: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mongodb/mongodb-original.svg",
     git: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg",
     cplusplus: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/cplusplus/cplusplus-original.svg",
-    n8n: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-original.svg", // n8n uses Node.js icon
+    rust: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/rust/rust-original.svg",
+    oracle: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/oracle/oracle-original.svg",
   };
   return map[name.toLowerCase()] || "";
 };
@@ -33,10 +35,10 @@ const orbitLevels = [
     sizePercent: 93,  // 93% of container (outermost)
     zIndex: 10,
     items: [
-      { type: "logo", name: "n8n" },
-      { type: "text", label: "Automation", icon: Cpu },
-      { type: "logo", name: "mongodb" },
-      { type: "text", label: "Stories", icon: ScrollText },
+      { type: "text", label: "AI Automation", icon: Cpu },
+      { type: "logo", name: "cplusplus" },
+      { type: "logo", name: "rust" },
+      { type: "text", label: "REST", icon: ScrollText },
     ]
   },
   {
@@ -46,12 +48,11 @@ const orbitLevels = [
     sizePercent: 67,  // 67% of container (middle)
     zIndex: 20,
     items: [
-      { type: "logo", name: "cplusplus" },
-      { type: "logo", name: "react" },
-      { type: "logo", name: "docker" },
-      { type: "logo", name: "aws" },
       { type: "logo", name: "postgresql" },
-      { type: "logo", name: "git" },
+      { type: "logo", name: "reactnative" },
+      { type: "logo", name: "mongodb" },
+      { type: "logo", name: "aws" },
+      { type: "logo", name: "oracle" },
     ]
   },
   {
@@ -63,7 +64,10 @@ const orbitLevels = [
     items: [
       { type: "logo", name: "python" },
       { type: "logo", name: "typescript" },
+      { type: "logo", name: "javascript" },
+      { type: "logo", name: "nodejs" },
       { type: "logo", name: "nextjs" },
+      { type: "logo", name: "git" },
     ]
   },
 ];

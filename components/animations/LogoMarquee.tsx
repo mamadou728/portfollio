@@ -21,7 +21,7 @@ export default function LogoMarquee({
   const duplicatedLogos = [...logos, ...logos];
 
   return (
-    <div className="relative w-full overflow-hidden py-2 min-h-[3.5rem] flex items-center">
+    <div className="relative w-full overflow-hidden py-3 min-h-[4rem] flex items-center">
       <motion.div
         className="flex gap-4 items-center flex-shrink-0"
         animate={{
