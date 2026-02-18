@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
+import Link from "next/link";
 
 const navItems = [
   { label: "Projects", id: "projects" },
@@ -47,15 +48,13 @@ export default function Header() {
     >
       <nav className="flex items-center justify-between gap-2 lg:gap-3 px-3 sm:px-[clamp(0.5rem,1.5vw,1rem)] py-2.5 sm:py-[clamp(0.25rem,0.75vw,0.375rem)] rounded-lg bg-black/80 backdrop-blur-md border border-white/10 shadow-xl shadow-black/10 w-full max-w-[90%] sm:max-w-[50%] mx-auto min-h-[44px] sm:min-h-0">
         {/* Brand */}
-        <button
-          onClick={() => {
-            setMenuOpen(false);
-            window.scrollTo({ top: 0, behavior: "smooth" });
-          }}
+        <Link
+          href="/"
+          onClick={() => setMenuOpen(false)}
           className="px-2 py-1.5 text-base sm:text-base font-bold text-white hover:text-zinc-300 transition-colors rounded-full min-h-[44px] min-w-[44px] flex items-center justify-center sm:min-h-0 sm:min-w-0"
         >
           MK
-        </button>
+        </Link>
 
         {/* Desktop: inline links */}
         <div className="flex items-center pr-1 gap-0.5 hidden sm:flex">

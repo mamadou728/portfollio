@@ -3,20 +3,19 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import Image from "next/image";
 
 interface FlipCardProps {
   title: string;
-  image: string;
   description: string;
+  summary?: string;
   techStack: string[];
   slug: string;
 }
 
 export default function FlipCard({
   title,
-  image,
   description,
+  summary,
   techStack,
   slug,
 }: FlipCardProps) {
@@ -46,17 +45,8 @@ export default function FlipCard({
           className="absolute inset-0 overflow-hidden rounded-xl border border-white/10 shadow-xl"
           style={{ backfaceVisibility: "hidden" }}
         >
-          {/* Project Image Background */}
-          <div className="w-full h-full relative bg-gradient-to-br from-zinc-700 to-zinc-900">
-            {image && (
-              <Image
-                src={image}
-                alt={title}
-                fill
-                className="object-cover object-left-top"
-              />
-            )}
-          </div>
+          {/* Project Background */}
+          <div className="w-full h-full relative bg-black" />
 
           {/* Dark Overlay with Centered Title */}
           <div className="absolute inset-0 bg-black/30 flex items-center justify-center transition-colors duration-300 group-hover:bg-black/40">
@@ -71,20 +61,24 @@ export default function FlipCard({
 
         {/* Back of Card */}
         <div
-          className="absolute inset-0 bg-gradient-to-br from-zinc-900 to-black text-white p-2 @sm:p-2.5 @md:p-3 flex flex-col justify-between rounded-xl border border-white/10 shadow-xl"
+          className="absolute inset-0 bg-gradient-to-br from-zinc-900 to-black text-white p-2 @sm:p-2.5 @md:p-3 flex flex-col rounded-xl border border-white/10 shadow-xl"
           style={{
             backfaceVisibility: "hidden",
             transform: "rotateY(180deg)",
           }}
         >
-          <div className="space-y-1">
+          <div className="flex-1 space-y-1.5 overflow-y-auto">
             <h3 className="text-xs @sm:text-sm @md:text-base font-bold tracking-tight">{title}</h3>
-            <p className="text-[10px] @sm:text-xs text-white/70 leading-snug line-clamp-2">
-              {description}
-            </p>
+            
+            {/* Summary Section */}
+            {summary && (
+              <p className="text-[10px] @sm:text-xs text-white/80 leading-relaxed">
+                {summary}
+              </p>
+            )}
 
             {/* Tech Stack */}
-            <div className="flex flex-wrap gap-1 pt-0.5">
+            <div className="flex flex-wrap gap-1 pt-1">
               {techStack.map((tech) => (
                 <span
                   key={tech}
@@ -97,16 +91,18 @@ export default function FlipCard({
           </div>
 
           {/* CTA Button */}
-          <Link href={`/projects/${slug}`}>
-            <motion.button 
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-              transition={{ type: "spring", stiffness: 300, damping: 30 }}
-              className="w-full py-1.5 @md:py-2 bg-white text-black hover:bg-zinc-100 transition-colors text-[10px] @sm:text-xs font-semibold rounded-lg"
-            >
-              Read More
-            </motion.button>
-          </Link>
+          <div className="mt-2">
+            <Link href={`/projects/${slug}`}>
+              <motion.button 
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                className="w-full py-1.5 @md:py-2 bg-white text-black hover:bg-zinc-100 transition-colors text-[10px] @sm:text-xs font-semibold rounded-lg"
+              >
+                Read More
+              </motion.button>
+            </Link>
+          </div>
         </div>
       </motion.div>
     </div>

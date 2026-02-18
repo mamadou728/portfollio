@@ -32,11 +32,101 @@ function ContentSection({
   className?: string;
 }) {
   if (!children) return null;
+  
+  // Convert text with bullet points (•) and subsection titles into formatted content
+  const formatContent = (text: string) => {
+    const lines = text.split('\n');
+    const elements: React.ReactNode[] = [];
+    let currentList: string[] = [];
+    let currentParagraph = '';
+
+    lines.forEach((line, idx) => {
+      const trimmedLine = line.trim();
+      
+      if (trimmedLine.startsWith('•')) {
+        // Save any pending paragraph
+        if (currentParagraph) {
+          elements.push(<p key={`p-${idx}`}>{currentParagraph}</p>);
+          currentParagraph = '';
+        }
+        // Add to current list
+        currentList.push(trimmedLine.substring(1).trim());
+      } else if (trimmedLine === '') {
+        // Empty line - flush current list if any
+        if (currentList.length > 0) {
+          elements.push(
+            <ul key={`ul-${idx}`} className="list-disc list-outside ml-5 space-y-2">
+              {currentList.map((item, i) => <li key={i}>{item}</li>)}
+            </ul>
+          );
+          currentList = [];
+        }
+        // Flush paragraph if any
+        if (currentParagraph) {
+          elements.push(<p key={`p-${idx}`}>{currentParagraph}</p>);
+          currentParagraph = '';
+        }
+      } else if (trimmedLine.includes(':')) {
+        // Subsection title (text before colon)
+        // Flush any pending content first
+        if (currentList.length > 0) {
+          elements.push(
+            <ul key={`ul-${idx}`} className="list-disc list-outside ml-5 space-y-2">
+              {currentList.map((item, i) => <li key={i}>{item}</li>)}
+            </ul>
+          );
+          currentList = [];
+        }
+        if (currentParagraph) {
+          elements.push(<p key={`p-${idx}`}>{currentParagraph}</p>);
+          currentParagraph = '';
+        }
+        
+        // Split at first colon
+        const colonIndex = trimmedLine.indexOf(':');
+        const title = trimmedLine.substring(0, colonIndex).trim();
+        const content = trimmedLine.substring(colonIndex + 1).trim();
+        
+        elements.push(
+          <div key={`subsection-${idx}`} className="mt-4 first:mt-0">
+            <h4 className="font-bold text-zinc-800 mb-1">{title}</h4>
+            {content && <p className="text-zinc-600">{content}</p>}
+          </div>
+        );
+      } else {
+        // Regular text line
+        if (currentList.length > 0) {
+          elements.push(
+            <ul key={`ul-${idx}`} className="list-disc list-outside ml-5 space-y-2">
+              {currentList.map((item, i) => <li key={i}>{item}</li>)}
+            </ul>
+          );
+          currentList = [];
+        }
+        currentParagraph += (currentParagraph ? ' ' : '') + trimmedLine;
+      }
+    });
+
+    // Flush any remaining content
+    if (currentList.length > 0) {
+      elements.push(
+        <ul key="ul-final" className="list-disc list-outside ml-5 space-y-2">
+          {currentList.map((item, i) => <li key={i}>{item}</li>)}
+        </ul>
+      );
+    }
+    if (currentParagraph) {
+      elements.push(<p key="p-final">{currentParagraph}</p>);
+    }
+
+    return elements;
+  };
+
   return (
     <section className={`border-l-2 border-zinc-100 pl-5 md:pl-6 py-1 ${className}`}>
       {title && <SectionHeading>{title}</SectionHeading>}
       <div className="text-base text-zinc-600 leading-relaxed space-y-3">
-        {children}
+        {typeof children === 'string' ? formatContent(children) : children}
       </div>
     </section>
   );
@@ -164,9 +254,9 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
               </ContentSection>
             )}
 
-            {/* Hard Decisions */}
+            {/* Key Trade-offs */}
             {project.hardDecisions && (
-              <ContentSection title="Hard Decisions & Trade-offs">
+              <ContentSection title="Key Trade-offs">
                 {project.hardDecisions}
               </ContentSection>
             )}
@@ -178,6 +268,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
               {project.technicalDetails &&
               (project.technicalDetails.languages?.length ||
                 project.technicalDetails.frameworks?.length ||
+                project.technicalDetails.database?.length ||
                 project.technicalDetails.tools?.length ||
                 project.technicalDetails.other?.length) ? (
                 <div className="bg-zinc-50/50 rounded-2xl p-5 border border-zinc-100">
@@ -188,6 +279,10 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                   <TechnicalGrid
                     title="Frameworks"
                     items={project.technicalDetails.frameworks ?? []}
+                  />
+                  <TechnicalGrid
+                    title="Database"
+                    items={project.technicalDetails.database ?? []}
                   />
                   <TechnicalGrid
                     title="Tools"

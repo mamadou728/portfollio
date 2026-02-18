@@ -27,7 +27,7 @@ export default function ProjectGallery() {
         </motion.div>
 
         {/* Project Grid */}
-        <div className="grid grid-cols-[repeat(auto-fit,minmax(min(280px,100%),1fr))] gap-6 max-w-3xl mx-auto [&>*:last-child:nth-child(odd)]:col-start-1 [&>*:last-child:nth-child(odd)]:col-end-[-1] [&>*:last-child:nth-child(odd)]:max-w-[calc(50%-0.75rem)] [&>*:last-child:nth-child(odd)]:mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-3xl mx-auto">
           {projects.map((project, index) => (
             <motion.div
               key={project.id}
@@ -42,8 +42,8 @@ export default function ProjectGallery() {
             >
               <FlipCard
                 title={project.title}
-                image={project.image}
                 description={project.description}
+                summary={project.summary}
                 techStack={project.techStack}
                 slug={project.slug}
               />
