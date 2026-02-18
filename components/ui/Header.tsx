@@ -9,7 +9,7 @@ const navItems = [
   { label: "Projects", id: "projects" },
   { label: "Area of Focus", id: "focus" },
   { label: "My Journey", id: "timeline" },
-  { label: "Orbit", id: "orbit" },
+  // { label: "Orbit", id: "orbit" },
   { label: "Contact", id: "contact" },
 ];
 
