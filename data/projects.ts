@@ -55,7 +55,6 @@ export const projects: Project[] = [
   {
     id: "2",
     title: "Lexi-RAG",
-    image: "/images/projects/lexi-rag.jpg",
     description:
       "Privacy-first legal Retrieval-Augmented Generation (RAG) system combining encrypted document storage, hybrid semantic + keyword retrieval, answer re-ranking, and role-enforced vector filtering.",
     summary: "Privacy-first legal RAG system combining encrypted document storage with semantic search. Features role-based access control and citation-backed responses.",
@@ -64,7 +63,6 @@ export const projects: Project[] = [
     hardDecisions: "Encryption vs. Searchability: Adopted a dual-storage model (encrypted source text + unencrypted embeddings) to preserve retrieval quality while maintaining confidentiality. Research is ongoing to further strengthen encryption strategies without degrading retrieval performance.\n\nPost-Filtering vs. Query-Time Enforcement: Moved RBAC enforcement directly into Qdrant's indexed payload filters to eliminate security gaps and avoid expensive post-retrieval filtering.\n\nRetrieval Frequency vs. Latency: Implemented contextual routing to reduce unnecessary vector searches, lowering latency and infrastructure costs.\n\nModel Size vs. Cost & Security: Selected Llama 3.1-8B via Groq for inference to balance security, cost efficiency, and low-latency responses. The lightweight 8B model provides sufficient reasoning capacity while remaining computationally economical.",
     techStack: ["Python", "FastAPI", "Beanie ODM", "Motor", "BGE-M3", "Llama 3.1-8B", "LangChain", "MongoDB", "Qdrant", "Next.js", "React", "TypeScript"],
     slug: "lexi-rag",
-    gallery: ["/images/projects/lexi-rag.jpg"],
     technicalDetails: {
       languages: ["Python", "TypeScript"],
       frameworks: ["FastAPI", "LangChain", "Next.js", "React"],
@@ -76,7 +74,6 @@ export const projects: Project[] = [
   {
     id: "3",
     title: "Wealthnudge",
-    image: "/images/projects/wealthnudge.jpg",
     description:
       "Full-stack, multi-tenant personal finance platform combining a React Native mobile application with a Node.js financial API and a dedicated AI coaching service.",
     summary: "Full-stack personal finance platform with React Native mobile app and dual-backend architecture. Features atomic financial operations and AI coaching service.",
@@ -85,7 +82,6 @@ export const projects: Project[] = [
     hardDecisions: "Database Enforcement vs Development Agility: Rather than embedding all rules in stored procedures, financial logic lives primarily in structured Node.js services. This increases flexibility and simplifies debugging while the product architecture is evolving.\n\nSecurity Architecture Vision: The system is designed with strict separation between identity and financial data. The architectural principle is: access to a user identity does not automatically expose financial records, and financial records are never accessible without verified identity context.\n\nAI Scalability vs Core Stability: The AI service is deployed as a separate backend to allow focused scalability and independent performance tuning, ensuring conversational inference workloads do not degrade financial operations.",
     techStack: ["React Native", "TypeScript", "Expo", "Zustand", "Node.js", "Express", "PostgreSQL", "Supabase", "RS256 JWT"],
     slug: "wealthnudge",
-    gallery: ["/images/projects/wealthnudge.jpg"],
     technicalDetails: {
       languages: ["TypeScript", "Node.js", "SQL"],
       frameworks: ["React Native", "Expo", "Express"],
@@ -97,7 +93,6 @@ export const projects: Project[] = [
   {
     id: "4",
     title: "SafeSpace",
-    image: "/images/projects/safespace.jpg",
     description:
       "Real-time geolocation-based safety platform built in 24 hours by a team of 4 during a hackathon, enabling instant walking buddy matching and live location tracking.",
     summary: "Real-time safety platform built in 24 hours enabling instant walking buddy matching via geolocation. Uses WebSocket notifications for live location tracking.",
@@ -106,7 +101,6 @@ export const projects: Project[] = [
     hardDecisions: "Speed vs. Abstraction: Chose a direct Express + PostgreSQL architecture to ship quickly rather than introducing complex architectural layers.\n\nReal-Time Performance vs. Simplicity: Used indexed queries and event-based filtering to ensure fast matching and near-instant notification delivery without overengineering the system.",
     techStack: ["Node.js", "Express", "PostgreSQL", "WebSockets", "HTML", "CSS", "Google Maps API", "Supabase", "JWT"],
     slug: "safespace",
-    gallery: ["/images/projects/safespace.jpg"],
     technicalDetails: {
       languages: ["JavaScript", "Node.js"],
       frameworks: ["Express"],
@@ -118,7 +112,6 @@ export const projects: Project[] = [
   {
     id: "5",
     title: "AI Finance Agent",
-    image: "/images/projects/ai-agent.jpg",
     description:
       "AI orchestration backend powering the WealthNudge ecosystem, routing financial requests across tools and analytics using a LangGraph state machine, secure Text-to-SQL validation, and dynamic MCP tool execution.",
     summary: "AI orchestration backend using LangGraph state machine for intelligent financial request routing. Features secure Text-to-SQL pipeline with multi-stage validation.",
@@ -127,12 +120,11 @@ export const projects: Project[] = [
     hardDecisions: "Flexibility vs. Security: Enabled natural language analytics while enforcing strict SQL validation and database-level Row-Level Security.\n\nScalability vs. Simplicity: Adopted a registry-based tool architecture to support multi-domain expansion at the cost of increased orchestration complexity.\n\nLatency vs. Correctness: Accepted additional validation and routing layers to ensure financial correctness and tenant isolation.",
     techStack: ["Python", "FastAPI", "LangGraph", "Pydantic", "MCP", "OpenAI GPT-4o-mini", "PostgreSQL", "Supabase", "JWT"],
     slug: "ai-finance-agent",
-    gallery: ["/images/projects/ai-agent.jpg"],
     technicalDetails: {
       languages: ["Python"],
-      frameworks: ["FastAPI", "LangGraph"],
+      frameworks: ["FastAPI", "LangGraph", "MCP"],
       database: ["PostgreSQL", "Supabase"],
-      tools: ["Pydantic", "MCP"],
+      tools: ["Pydantic"],
       other: ["OpenAI GPT-4o-mini", "Text-to-SQL", "Row-Level Security", "Intent classification", "Rate limiting"],
     },
   },
