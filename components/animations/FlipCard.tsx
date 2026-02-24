@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef, useCallback } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 
@@ -20,6 +20,7 @@ export default function FlipCard({
   slug,
 }: FlipCardProps) {
   const [isFlipped, setIsFlipped] = useState(false);
+  const isTouchDevice = useRef(false);
 
   const flipTransition = {
     type: "tween",
@@ -27,12 +28,30 @@ export default function FlipCard({
     ease: "easeInOut",
   };
 
+  // Detect touch interaction — once a touch is detected, disable hover-based flipping
+  const handleTouchStart = useCallback(() => {
+    isTouchDevice.current = true;
+  }, []);
+
+  const handleMouseEnter = useCallback(() => {
+    if (!isTouchDevice.current) setIsFlipped(true);
+  }, []);
+
+  const handleMouseLeave = useCallback(() => {
+    if (!isTouchDevice.current) setIsFlipped(false);
+  }, []);
+
+  const handleClick = useCallback(() => {
+    if (isTouchDevice.current) setIsFlipped((prev) => !prev);
+  }, []);
+
   return (
     <div
       className="relative w-full h-48 @md:h-56 @lg:h-64 cursor-pointer group"
-      onMouseEnter={() => setIsFlipped(true)}
-      onMouseLeave={() => setIsFlipped(false)}
-      onClick={() => setIsFlipped(!isFlipped)}
+      onTouchStart={handleTouchStart}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+      onClick={handleClick}
     >
       <motion.div
         className="w-full h-full"
